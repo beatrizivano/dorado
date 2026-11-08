@@ -1,1 +1,116 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dorado — Biodiversidade em dados</title><link rel="stylesheet" href="/static/styles.css"></head><body><div class="shell"><aside class="sidebar"><div class="brand"><span class="brand-symbol">D<span>◌</span></span><span>DORADO<small>GENETIC COVERAGE</small></span></div><div class="navcaption">PLATAFORMA / 01</div><nav><button class="nav active" data-view="new"><span>01</span> Nova análise</button><button class="nav" data-view="history"><span>02</span> Histórico</button><button class="nav" data-view="results"><span>03</span> Resultados</button></nav><div class="aside-bottom"><div class="line"></div><p>Pesquisa genética.<br>Decisões ambientais.</p><small>IFPR · PROJETO ACADÊMICO<br>VERSÃO 0.2 / PROTÓTIPO FUNCIONAL</small></div></aside><main><header class="topbar"><div>DORADO <span>/</span> <strong id="breadcrumb">NOVA ANÁLISE</strong></div><div><span class="dot"></span> NCBI / NUCLEOTIDE</div></header><section id="new" class="view"><div class="hero"><div class="eyebrow"><span class="square"></span> INTELIGÊNCIA PARA CONSERVAÇÃO <span class="hero-no">001 / DATA SCIENCE</span></div><h1>O que os dados<br><em>não mostram.</em></h1><p>Identifique lacunas na cobertura genética de espécies aquáticas e a disponibilidade de registros com localidade de coleta.</p><div class="hero-rule"><span>NCBI GENBANK</span><span>COBERTURA GEOGRÁFICA</span><span>METADADOS PÚBLICOS</span></div></div><div class="section-heading"><span>01 / CONFIGURAÇÃO</span><span>ETAPA INICIAL</span></div><form id="analysisForm"><div class="layout-grid"><div class="panel"><div class="panelhead"><h2>Espécies de interesse</h2><span class="indicator">OBRIGATÓRIO</span></div><p class="hint">Insira nomes científicos, separados por vírgulas, ponto e vírgula ou quebra de linha.</p><textarea id="names" rows="7" placeholder="Astyanax lacustris&#10;Rhamdia quelen&#10;Hoplias malabaricus" required></textarea><div class="row between gap"><label class="upload">+ Importar CSV ou XLSX <input id="file" type="file" accept=".csv,.xlsx" hidden></label><small>ATÉ 5 MB</small></div><div id="fileOptions" class="fileoptions" hidden><label>Aba <select id="sheet"></select></label><label>Coluna <select id="column"></select></label><button id="applyImport" type="button" class="smallbtn">Usar seleção</button></div><div id="validation" class="validation">A lista será validada antes da execução.</div></div><div class="panel"><div class="panelhead"><h2>Filtros e localidade</h2><span class="indicator muted">OPCIONAL</span></div><label>Gene(s) <span>Separe por vírgulas</span><input id="genes" placeholder="COI, 12S, 16S"></label><div class="two"><label>País <input id="countries" placeholder="Brasil"></label><label>Estado <input id="states" placeholder="Paraná"></label></div><div class="two"><label>Cidade <input id="cities" placeholder="Foz do Iguaçu"></label><label>Palavra-chave <input id="keywords" placeholder="Rio Iguaçu"></label></div><label>Consulta avançada <span>Use {especie} e, opcionalmente, {gene}</span><textarea id="template" rows="2" placeholder="Opcional: {especie} AND {gene}"></textarea></label></div></div><div class="panel action-panel"><div class="section-heading compact"><span>02 / CREDENCIAIS E EXECUÇÃO</span><span>CONSULTA À API PÚBLICA</span></div><div class="credentials"><label>E-mail de identificação NCBI <input id="email" type="email" placeholder="pesquisador@instituicao.edu.br" required></label><label>Chave NCBI <span>opcional; não armazenada</span><input id="api_key" type="password" autocomplete="off" placeholder="API key"></label></div><div id="preview" class="preview">Preencha as espécies para visualizar a consulta que será enviada ao NCBI.</div><div class="row between aligncenter"><small>As buscas podem demorar conforme o volume de registros e a disponibilidade do NCBI.</small><button type="submit" class="primary">EXECUTAR ANÁLISE <span>↗</span></button></div></div></form></section><section id="history" class="view" hidden><div class="page-title"><div class="eyebrow">ARQUIVO / EXECUÇÕES</div><h1>Histórico<span class="period">.</span></h1><p>Consulte análises realizadas e acompanhe seu processamento.</p></div><div id="historyContent" class="panel"></div></section><section id="results" class="view" hidden><div class="page-title"><div class="eyebrow">ANÁLISE / RESULTADOS</div><h1>Resultados<span class="period">.</span></h1><p id="resultSubtitle">Selecione uma análise no histórico.</p></div><div id="resultsContent"></div></section><footer><span>DORADO / GENETIC COVERAGE PLATFORM</span><span>METADADOS CIENTÍFICOS · NCBI</span><span>2026 © IFPR</span></footer></main></div><script src="/static/app.js"></script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dorado</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-symbol">D</span>
+        <span class="brand-text">DORADO</span>
+      </div>
+
+      <nav class="navgroup">
+        <button class="nav active" data-view="new">Nova análise</button>
+        <button class="nav" data-view="history">Histórico</button>
+        <button class="nav" data-view="results">Resultados</button>
+      </nav>
+
+      <div class="aside-bottom">IFPR 2026</div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="breadcrumb">Dorado / <strong id="breadcrumb">NOVA ANÁLISE</strong></div>
+      </header>
+
+      <section id="new" class="view">
+        <form id="analysisForm">
+          <div class="layout-grid">
+            <div class="panel bento-card tall">
+              <div class="panelhead">
+                <h2>Espécies</h2>
+                <span class="indicator">Obrigatório</span>
+              </div>
+              <textarea id="names" rows="8" placeholder="Astyanax lacustris&#10;Rhamdia quelen&#10;Hoplias malabaricus" required></textarea>
+              <div class="row between gap stack-mobile">
+                <label class="upload">Importar CSV ou XLSX <input id="file" type="file" accept=".csv,.xlsx" hidden></label>
+                <small>até 5 MB</small>
+              </div>
+              <div id="fileOptions" class="fileoptions" hidden>
+                <label>Aba <select id="sheet"></select></label>
+                <label>Coluna <select id="column"></select></label>
+                <button id="applyImport" type="button" class="smallbtn">Aplicar</button>
+              </div>
+              <div id="validation" class="info-card">A lista será validada antes da execução.</div>
+            </div>
+
+            <div class="panel bento-card">
+              <div class="panelhead">
+                <h2>Parâmetros</h2>
+                <span class="indicator muted">Opcional</span>
+              </div>
+              <label>Gene(s)
+                <input id="genes" placeholder="COI, 12S, 16S">
+              </label>
+              <div class="two">
+                <label>País <input id="countries" placeholder="Brasil"></label>
+                <label>Estado <input id="states" placeholder="Paraná"></label>
+              </div>
+              <div class="two">
+                <label>Cidade <input id="cities" placeholder="Foz do Iguaçu"></label>
+                <label>Palavra-chave <input id="keywords" placeholder="Rio Iguaçu"></label>
+              </div>
+              <label>Consulta avançada
+                <textarea id="template" rows="3" placeholder="{especie} AND {gene}"></textarea>
+              </label>
+            </div>
+
+            <div class="panel bento-card wide-panel">
+              <div class="panelhead compact-head">
+                <h2>Execução</h2>
+              </div>
+              <div class="credentials">
+                <label>E-mail NCBI
+                  <input id="email" type="email" placeholder="pesquisador@instituicao.edu.br" required>
+                </label>
+                <label>Chave NCBI
+                  <input id="api_key" type="password" autocomplete="off" placeholder="Opcional">
+                </label>
+              </div>
+              <div id="preview" class="info-card">Preencha as espécies para visualizar a consulta.</div>
+              <div class="row between aligncenter stack-mobile">
+                <small>O tempo varia conforme o volume de registros.</small>
+                <button type="submit" class="primary">Executar análise</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section id="history" class="view" hidden>
+        <div class="page-title simple-title">
+          <h1>Histórico</h1>
+        </div>
+        <div id="historyContent" class="panel bento-card"></div>
+      </section>
+
+      <section id="results" class="view" hidden>
+        <div class="page-title simple-title">
+          <h1>Resultados</h1>
+          <div id="resultSubtitle" class="subtitle-chip">Selecione uma análise no histórico.</div>
+        </div>
+        <div id="resultsContent"></div>
+      </section>
+
+      <footer>IFPR 2026</footer>
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
