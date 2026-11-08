@@ -1,0 +1,43 @@
+{
+  "submitted": 1,
+  "valid": 1,
+  "duplicates": [],
+  "invalid": [],
+  "with_records": 1,
+  "without_records": [],
+  "species_coverage_pct": 100.0,
+  "total_records": 1,
+  "with_locality": 1,
+  "without_locality": 0,
+  "with_coordinates": 0,
+  "relevance": {
+    "país": 1
+  },
+  "species": [
+    {
+      "species": "Cambeva castroi",
+      "total": 1,
+      "with_locality": 1,
+      "without_locality": 0,
+      "with_coordinates": 0
+    }
+  ],
+  "localities": [
+    {
+      "name": "Brazil: Contenda PR",
+      "records": 1,
+      "species": 1,
+      "origin": [
+        "texto"
+      ]
+    }
+  ],
+  "matrix": [
+    {
+      "species": "Cambeva castroi",
+      "gene": "coi",
+      "relevance": "país",
+      "records": 1
+    }
+  ]
+}

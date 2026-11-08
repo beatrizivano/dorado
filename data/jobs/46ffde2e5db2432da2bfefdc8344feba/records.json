@@ -1,0 +1,45 @@
+[
+  {
+    "accession": "PZ580914.1",
+    "organism": "Cambeva castroi",
+    "metadata": {
+      "specimen_voucher": [
+        "UFRJ 14902"
+      ],
+      "db_xref": [
+        "taxon:2491901"
+      ],
+      "geo_loc_name": [
+        "Brazil: Contenda PR"
+      ],
+      "collection_date": [
+        "2026"
+      ]
+    },
+    "species": [
+      "Cambeva castroi"
+    ],
+    "genes": [
+      "coi"
+    ],
+    "classification": {
+      "has_locality": true,
+      "locality_origin": "texto",
+      "relevance": "país",
+      "matches": {
+        "country": true,
+        "state": false,
+        "city": false,
+        "keyword": false
+      },
+      "coordinates": null,
+      "invalid_coordinates": false,
+      "raw_locality": [
+        "Brazil: Contenda PR"
+      ],
+      "country_text": "Brazil",
+      "description": " Contenda PR",
+      "inferred": null
+    }
+  }
+]

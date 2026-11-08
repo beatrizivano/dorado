@@ -1,0 +1,25 @@
+{
+  "species": [
+    "Cambeva castroi"
+  ],
+  "invalid": [],
+  "duplicates": [],
+  "genes": [
+    "coi"
+  ],
+  "localities": {
+    "countries": [
+      "Brasil"
+    ],
+    "states": [
+      "PR"
+    ],
+    "cities": [
+      "Cambé"
+    ],
+    "keywords": []
+  },
+  "template": "",
+  "email": "beatrizivano56@gmail.com",
+  "api_key": ""
+}
